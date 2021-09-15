@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+	</script>
+
+	<style>
+		html{
+			scroll-behavior: smooth;
+			overflow-x: hidden;
+		}
+
+		a:hover{
+			border-bottom: white;
+		}
+
+		#info{
+			position: relative;
+			top: 4px;
+		}
+
+		#help{
+			position: relative;
+			top: 4px;
+		}
+
+		#partner{
+			position: relative;
+			top: 4px;
+		}
+
+		#help_{
+			position: relative;
+			top: 4px;
+		}
+
+		#drop{
+			position: relative;
+			top: -122px;
+			right: -760px;
+		}
+
+		#main-btn{
+			position: relative;
+			right: 770px;
+			top: 2px;
+			
+		}
+
+		
+
+		
+
+		
+
+
+		
+	</style>
+</head>
+
+<body>
+	<!--Navigation-->
+	{% block 'nav' %}
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 py-3 logo">
+					<img src="/static/images/cptl.png" alt="" id="cptl"> </br>
+					<label class="l1 logo_text_decoration lg">Capital</label>
+					<label class="l2 logo_text_decoration lg">Insurance</label>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+		<nav class="col-md-12 nav pt-1 mt-2 bg-light menu  " style="width: 100%;" data-spy="affix" data-offset-top="197">
+			<a href="#" class="nav-link">Home</a>
+			<a href="#services" class="nav-link">Services</a>
+			<a href="#about" class="nav-link">About Us</a>
+			<a href="#" class="nav-link" data-toggle="modal" data-target="#contactmodal">Contact Us</a>
+	
+			<!--<a href="/login/"  class="nav-link">Login</a>-->
+			<!--<a href="/signup/"  class="nav-link">New user ?</a>-->
+			<div class="dropdown" id="drop">
+				<button type="button" class="btn btn-light dropdown-toggle" id="main-btn" data-toggle="dropdown">
+				  {{request.user}}
+				</button>
+				<div class="dropdown-menu">
+				  <a class="dropdown-item" href="/client/myaccount/">My Profile</a>
+				  <a class="dropdown-item" href="/client/history/">History</a>
+				  <a class="dropdown-item" href="/logout/">Logout</a>
+				</div>
+			  </div>
+		</nav>
+
+		{% endblock  %}
+	
+	{% block 'carousel' %}
+	<div class="container-fluid mt-5" >
+		<div id="carouselblock" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselblock" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselblock" data-slide-to="1"></li>
+				<li data-target="#carouselblock" data-slide-to="2"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+				  <img src="/static/images/slide-04.jpg"/>
+				</div>
+				<div class="carousel-item">
+					<img src="/static/images/slide-05.jpg" >
+				</div>
+				<div class="carousel-item">
+					<img src="/static/images/slide-06.jpg"/>
+				</div>
+			</div>
+			<a href="#carouselblock" class="carousel-control-prev" data-slide="prev">
+				<span class="carousel-control-prev-icon"></span>
+			</a>
+			<a href="#carouselblock" class="carousel-control-next" data-slide="next">
+				<span class="carousel-control-next-icon"></span>
+			</a>
+		</div>
+	</div>
+
+{% endblock %}
+	
+
+{% block 'insurance' %}
+<div id="services">
+	<div class="container">
+		<div class="row mt-5 heading">
+			<div class="col-md-2 text-left">Our services</div>
+			<!--<div class="col-md-10 text-right text-danger">View all products></div> -->
+		</div>
+	</div>
+	
+	<div class="container" >
+		
+		<div class="row section mt-5">
+			{% for i in mobj %}
+			<div class="col-md-4 sub-section mt-5">
+				<img src="{{i.cat_image.url}}" alt="">
+				<div class="pl-3 pr-3 border  pb-3">
+					<span class="float-left font-weight-bold text-primary tag">{{i.catname}}</span>
+					<!-- <span class="float-right font-weight-bold tag">$25.75</span> -->
+					<p>{{i.catdesc}}</p>
+					<!--<span class="fa fa-star checked" style="padding-left:10px;"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="p-0 float-right text-danger" style="padding:10px">Review(48)</span> -->
+					<a href="{% url 'client:pages' id=i.id %}"><button class="btn btn-primary" style="width: 320px;">Secure Now</button></a>
+				</div>
+			</div>
+			{% endfor %}
+			<!-- <div class="col-md-4 sub-section">
+				<img src="/static/images/car1.jpg" />
+				<div class="pl-3 pr-3 border pb-3">
+					<span class="float-left font-weight-bold text-primary tag">vehicle Insurance</span>
+					<span class="float-right font-weight-bold tag">$25.75</span>
+					<p>Take out an insurance of your car, truck, bike and any other means of transportation.</p>
+					<a href="/client/vehicle_insurance/"><button class="btn btn-primary" style="width: 320px;">Secure Now</button></a>
+
+				</div>
+			</div>
+			<div class="col-md-4 sub-section ">
+				<img src="/static/images/travel.jpg" />
+				<div class="pl-3 pr-3 border pb-3">
+					<span class="float-left font-weight-bold text-primary tag">Travel Insurance</span>
+					<span class="float-right font-weight-bold tag">$25.75</span>
+					<p> 
+
+						If you are going to see the world, we offer amazing travel insurance opportunities. It is useful protection. </p>
+						<a href="/client/travel_insurance/"><button class="btn btn-primary" style="width: 320px;">Secure Now</button></a>
+
+				</div>
+			</div>
+		</div>
+		<div class="row section mt-5">
+			<div class="col-md-4 sub-section">
+				<img src="/static/images/health.jpg" />
+				<div class="pl-3 pr-3 border pb-3">
+					<span class="float-left font-weight-bold text-primary tag">Health Insurance</span>
+					<span class="float-right font-weight-bold tag">$25.75</span>
+					<p>God bless you. Guarantee yourself a reliable medical protection with our company.</p>
+					<a href="/client/health_insurance/"><button class="btn btn-primary" style="width: 320px;">Secure Now</button></a>
+
+				</div>
+			</div>
+			<div class="col-md-4 sub-section">
+				<img src="/static/images/life1.jpg" />
+				<div class="pl-3 pr-3 border pb-3">
+					<span class="float-left font-weight-bold text-primary tag">Life Insurance</span>
+					<span class="float-right font-weight-bold tag">$25.75</span>
+					<p>Life Insurance is defined as a contract between the policy holder and the insurance company.</p>
+					<a href="/client/life_insurance/"><button class="btn btn-primary" style="width: 320px;">Secure Now</button></a>
+
+				</div>
+			</div>
+			<div class="col-md-4 sub-section">
+				<img src="/static/images/m3.jpg" />
+				<div class="pl-3 pr-3 border pb-3">
+					<span class="float-left font-weight-bold text-primary tag">Mobile Insurance</span>
+					<span class="float-right font-weight-bold tag">$25.75</span>
+					<p>Mobile insurance has become as essential as having a mobile these days as mobile or a smartphone.</p>
+					<a href="/client/mobile_insurance/"><button class="btn btn-primary" style="width: 320px;">Secure Now</button></a>
+
+				</div>
+			</div>
+		</div> -->
+	</div>
+	<div id="about">
+	<div class="container">
+		<div class="row mt-5 tag-line pb-3">
+			<div class="col">
+				<h4>About Capital Insurance</h4>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="container border-bottom pb-5">
+		<div class="row">
+			<div class="col-md-6 pt-5 aboutus">
+				<label class="text-primary">Capital Group</label>
+				<p>Capital Group is an American financial services company. It ranks among the world's oldest and largest investment management organizations, with over $2 trillion in assets under management. Founded in Los Angeles, California in 1931, it is privately held and has offices around the globe in the Americas, Asia, Australia and Europe.Star Health & Allied Insurance Co Ltd is an Indian health insurance company based in Chennai, Tamil Nadu. The company has been providing services in health, personal accident and overseas travel insurance. Star Health Insurance has products to cater everybody, be it individuals, families or corporates and works directly as well as through various channels like agents, brokers, online etc., Star Health is also prominently into Bancassurance having long standing relationship with various banks. Star Health has underwritten a gross written premium of Rs.5401 Cr during the FY 2018–19 and has built up a promising path with an appreciable net worth of Rs.1480 Cr, as on 31 March 2019. Currently Star Health has 10600+ employees and 550+ branch offices all over India.</p>
+				<ul>
+					<li>Insurance provides certainty. Insurance provides certainty of payment at the uncertainty of loss. </li>
+					<li>Insurance provides protection.</li>
+					<li>Prevention of loss.</li>
+					<li>It Provides Capital..</li>
+					<li>It Improves Efficiency..</li>
+				</ul>
+				<button id="read-more" class="btn btn-danger">Read More</button>
+			</div>
+			<div class="col-md-6 pt-5">
+				<img src="/static/images/feature-image.jpg" />
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="container mt-5 border-bottom pb-5">
+		<div class="row">
+			
+		</div>
+	</div>
+	<div class="container mt-5 pb-5">
+		<div class="row">
+			
+		</div>
+	</div>
+	{% endblock %}
+	{% block 'footer' %}
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<div class="row">
+			<div class="col foot_text">
+				<h2 class="foot_head" id="info">Information</h2>
+				<ul >
+					<li><a href="#" class="text-secondary">About Us</a></li>
+					<li><a href="#" class="text-secondary">My Account</a></li>
+					<li><a href="#" class="text-secondary">Price List</a></li>
+					<li><a href="#" class="text-secondary">Contact</a></li>
+					<li><a href="#" class="text-secondary">Registration</a></li>
+					<li><a href="#" class="text-secondary">Blogs</a></li>
+				</ul>
+			</div>
+			<div class="col foot_text">
+				<h2 class="foot_head" id="help">Help <span class="foot_c">Center</span></h2>
+				<ul >
+					<li><a href="#" class="text-secondary">Assistance</a></li>
+					<li><a href="#" class="text-secondary">FAQ</a></li>
+					<li><a href="#" class="text-secondary">Winnner comments</a></li>
+					<li><a href="#" class="text-secondary">Refill the account</a></li>
+					<li><a href="#" class="text-secondary">Payment</a></li>
+				   
+				</ul>
+			</div>
+			<div class="col foot_text">
+				<h2 class="foot_head" id="partner">Partners</h2>
+				<ul>
+					{% for i in mobj %}
+					<li><a href="{% url 'client:pages' id=i.id %}" class="text-secondary">{{i.catname}}</a></li>
+					{% endfor %}
+					<!-- <li><a href="#" class="text-secondary">Lorem ipsum</a></li>
+					<li><a href="#" class="text-secondary">Lorem ipsum</a></li>
+					<li><a href="#" class="text-secondary">Lorem ipsum</a></li>
+					<li><a href="#" class="text-secondary">Lorem ipsum</a></li>
+					<li><a href="#" class="text-secondary">Lorem ipsum</a></li> -->
+				</ul>
+			</div>
+			<div class="col foot_text">
+				<h2 class="foot_head" id="help_">Help<span class="foot_c"> Center</span></h2>
+				<ul >
+					<li><a href="#" class="text-secondary">Assistance</a></li>
+					<li><a href="#" class="text-secondary">FAQ</a></li>
+					<li><a href="#" class="text-secondary">Winnner comments</a></li>
+					<li><a href="#" class="text-secondary">Refill the account</a></li>
+					<li><a href="#" class="text-secondary">Payment</a></li>
+				   
+				</ul>
+			</div>
+		   </div>
+		</div>
+	</footer>
+	{% endblock %}
+
+	{% block 'modal' %}
+	<div class="modal fade" id="contactmodal">
+		<div class="modal-dialog modal-dialog-centered modal-sm">
+			<div class="modal-content">
+				<div class="modal-header modal-title">
+					<h3>Contact Us</h3>
+				</div>
+				<div class="modal-body">
+					<form method="POST">
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Email address</label>
+							<input type="email" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Phone Number</label>
+							<input type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Message</label>
+							<input type="text" class="form-control" />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+					<button class="btn btn-primary">Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+	
+	
+	<!--<div id="registerationmodal" class="modal">
+		<div class="modal-dialog modal-dialog-centered modal-lg">
+			<div class="modal-content">
+				<div class="modal-header modal-title">
+					<h4>Register yourself</h4>
+				</div>
+				<div class="modal-body">
+					<form method="POST">
+						{% csrf_token %}
+						<div class="container">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label>Name</label>
+										<input type="text" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Email</label>
+										<input type="email" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Password</label>
+										<input type="password" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Mobile no.</label>
+										<input type="password" class="form-control" />
+									</div>
+									<div class="form-group">
+										<label>Country</label>
+										<select class="form-control">
+											<option>India</option>
+											<option>USA</option>
+											<option>Rusia</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label>Usertype</label>
+										<select class="form-control">
+											<option>Agent</option>
+											<option>Client</option>
+											<option>Admin</option>
+										</select>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-success">Sign up</button>
+					<button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	
+</body>
+
+</html>

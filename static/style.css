@@ -1,0 +1,187 @@
+.container-fluid {
+			
+}
+
+.l1 {
+    color: black;
+}
+
+.l2 {
+    color: red;
+}
+
+.logo_text_decoration {
+    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: black;
+    margin-left: 40px;
+    
+}
+
+a {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+a:hover {
+    color: gray;
+    border-bottom: 4px solid red;
+}
+
+.active1 {
+    border-bottom: 4px solid red;
+}
+
+.banner {
+    background: url('./images/slide_01.jpg') no-repeat 0 0;
+    background-size: cover;
+    height: 100vh;
+}
+
+h2 {
+    color: red;
+}
+
+h1 {
+    color: white;
+    font-size: 40px;
+}
+
+h1,
+h2 {
+    position: relative;
+    top: 35%;
+    font-weight: bold;
+}
+
+.heading {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.sub-section img {
+    width: 100%;
+    height: 200px;
+}
+
+.tag {
+    padding: 10px;
+    font-size: 20px;
+}
+
+.sub-section p {
+    clear: both;
+    padding: 10px;
+}
+
+.checked {
+    color: orangered;
+}
+
+.tag-line {
+    border-bottom: 1px solid lightgray;
+}
+
+.aboutus ul {
+    margin: 0;
+    padding: 15px;
+}
+
+.aboutus ul li {
+    line-height: 30px;
+}
+
+#read-more:hover {
+    background-color: black;
+}
+
+.button-position {
+    text-align: end;
+}
+
+.carousel-inner {
+    max-height: 640px;
+}
+
+.carousel-indicators li {
+    border-radius: 50%;
+}
+
+.menu {
+    justify-content: end;
+    
+}
+
+@media screen and (max-width: 1200px) {
+    .menu {
+        justify-content: end;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .logo {
+        text-align: center;
+    }
+
+    .menu {
+        justify-content: space-around;
+        
+    }
+}
+
+.carou {
+    height: 3500px;
+}
+
+.nv{
+    position: relative;
+    left: -188px;
+    
+}
+
+.logo{
+    position: relative;
+    left: -80px;
+}
+
+#cptl{
+    position: relative;
+    left: -70px;
+    border-radius: 60%;
+    top: 10px;
+}
+
+.lg{
+    position: relative;
+    top: -48px;
+    right: -10px;
+}
+
+.foot_text a{
+    color:white;
+    text-decoration: none;
+   }
+   .foot_text ul{
+    list-style:none;
+    padding-left:0px;
+    
+   
+   }
+   .foot_text li{
+    line-height: 2;
+
+   }
+   .foot_head {
+    color:white;
+   }
+   .foot_c{
+    font-weight:300; 
+   }
+

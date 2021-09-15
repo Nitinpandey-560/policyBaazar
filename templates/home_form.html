@@ -1,0 +1,139 @@
+{% extends 'welcomeclient.html' %}
+
+{% block 'nav' %}
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 py-3 logo">
+					<img src="/static/images/cptl.png" alt="" id="cptl"> </br>
+					<label class="l1 logo_text_decoration lg">Capital</label>
+					<label class="l2 logo_text_decoration lg">Insurance</label>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+		<nav class="col-md-12 nav pt-1 mt-2 bg-light menu  " style="width: 100%;" data-spy="affix" data-offset-top="197">
+			<a href="/client/home/" class="nav-link">Home</a>
+			<a href="#services" class="nav-link">Services</a>
+			<a href="#about" class="nav-link">About Us</a>
+			<a href="#" class="nav-link" data-toggle="modal" data-target="#contactmodal">Contact Us</a>
+	
+			<!--<a href="/login/"  class="nav-link">Login</a>-->
+			<!--<a href="/signup/"  class="nav-link">New user ?</a>-->
+			<div class="dropdown" id="drop">
+				<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+				  {{request.user}}
+				</button>
+				<div class="dropdown-menu">
+				  <a class="dropdown-item" href="#">My Account</a>
+				  <a class="dropdown-item" href="#">History</a>
+				  <a class="dropdown-item" href="/logout/">Logout</a>
+				</div>
+			  </div>
+		</nav>
+
+		{% endblock  %}
+
+    {% block 'carousel' %}
+    {% endblock %}
+
+    {% block 'insurance' %}
+    <div class="container mt-5 mb-5">
+    <h1>Communication Address</h1>
+    <form method="POST" onsubmit="return validateData()">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputaddr1">Address line 1</label>
+          <input type="text" class="form-control" id="addr" aria-describedby="emailHelp" placeholder="Enter Address Line 1" name="addr1">
+          <small id="addrerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputaddr2">Address line 2</label>
+            <input type="text" class="form-control" id="addr2" aria-describedby="emailHelp" placeholder="Enter Address Line 2" name="addr2">
+            <small id="add2error" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">City</label>
+            <input type="text" class="form-control" id="city" aria-describedby="emailHelp" placeholder="Enter City" name="city">
+            <small id="cityerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Pincode</label>
+            <input type="text" class="form-control" id="pincode" aria-describedby="emailHelp" placeholder="Enter Pincode" name="Pincode">
+            <small id="pinerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Carpet Area</label>
+            <input type="text" class="form-control" id="area" aria-describedby="emailHelp" placeholder="Enter Carpet Area" name="area">
+            <small id="areaerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+        
+        <a href="/client/order/"><button type="submit" class="btn btn-primary">Submit</button></a>
+      </form>
+    </div>
+    <script>
+      function validateData(){
+        var addr = document.getElementById("addr").value;
+        var addr2 = document.getElementById("addr2").value;
+        var city = document.getElementById("city").value;
+        var pincode = document.getElementById("pincode").value;
+        var area = document.getElementById("area").value;
+
+
+        if(addr.length==0){
+          document.getElementById("addrerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(addr)){
+          document.getElementById("addrerror").innerHTML = "only text are allowed";
+          return false;
+        }
+
+        if(addr2.length==0){
+          document.getElementById("addr2error").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(addr2)){
+          document.getElementById("addr2error").innerHTML = "only text are allowed";
+          return false;
+        }
+
+        if(city.length==0){
+          document.getElementById("cityerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(city)){
+          document.getElementById("cityerror").innerHTML = "only text are allowed";
+          return false;
+        }
+
+        if(pincode.length==0){
+          document.getElementById("pinerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(isNaN(pincode)){
+          document.getElementById("pinerror").innerHTML = "only numbers are allowed";
+          return false;
+        }
+
+        if(area.length==0){
+          document.getElementById("areaerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(isNaN(area)){
+          document.getElementById("areaerror").innerHTML = "only numbers are allowed";
+          return false;
+        }
+
+      }
+    </script>
+    
+    {% endblock %}

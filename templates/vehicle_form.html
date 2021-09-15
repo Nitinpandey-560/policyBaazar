@@ -1,0 +1,131 @@
+{% extends 'welcomeclient.html' %}
+
+{% block 'nav' %}
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 py-3 logo">
+					<img src="/static/images/cptl.png" alt="" id="cptl"> </br>
+					<label class="l1 logo_text_decoration lg">Capital</label>
+					<label class="l2 logo_text_decoration lg">Insurance</label>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+		<nav class="col-md-12 nav pt-1 mt-2 bg-light menu  " style="width: 100%;" data-spy="affix" data-offset-top="197">
+			<a href="/client/home/" class="nav-link">Home</a>
+			<a href="#services" class="nav-link">Services</a>
+			<a href="#about" class="nav-link">About Us</a>
+			<a href="#" class="nav-link" data-toggle="modal" data-target="#contactmodal">Contact Us</a>
+	
+			<!--<a href="/login/"  class="nav-link">Login</a>-->
+			<!--<a href="/signup/"  class="nav-link">New user ?</a>-->
+			<div class="dropdown" id="drop">
+				<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+				  {{request.user}}
+				</button>
+				<div class="dropdown-menu">
+				  <a class="dropdown-item" href="#">My Account</a>
+				  <a class="dropdown-item" href="#">History</a>
+				  <a class="dropdown-item" href="/logout/">Logout</a>
+				</div>
+			  </div>
+		</nav>
+
+		{% endblock  %}
+
+    {% block 'carousel' %}
+    {% endblock %}
+
+    {% block 'insurance' %}
+    <div class="container mt-5 mb-5">
+    <h1>Vehicle Registration Form</h1>
+    <form method="POST" onsubmit="return validateData()">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputaddr1">Registration No of Vehicle </label>
+          <input type="text" class="form-control" id="regs" aria-describedby="emailHelp" placeholder="Enter Registration No" name="regs">
+          <small id="regserror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputaddr2">Chassis Number</label>
+            <input type="text" class="form-control" id="chas" aria-describedby="emailHelp" placeholder="Enter Chassis Number" name="chas">
+            <small id="chaserror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Model Name</label>
+            <input type="text" class="form-control" id="model" aria-describedby="emailHelp" placeholder="Enter Model" name="model">
+            <small id="modelerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Colour</label>
+            <input type="text" class="form-control" id="color" aria-describedby="emailHelp" placeholder="Enter Colour" name="color">
+            <small id="colorerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Year</label>
+            <input type="text" class="form-control" id="year" aria-describedby="emailHelp" placeholder="Enter Year" name="year">
+            <small id="yearerror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+        
+        <a href="/client/order/"><button type="submit" class="btn btn-primary">Submit</button></a>
+      </form>
+    </div>
+    <script>
+      function validateData(){
+        var regs = document.getElementById("regs").value;
+        var chas = document.getElementById("chas").value;
+        var model = document.getElementById("model").value;
+        var color = document.getElementById("color").value;
+        var year = document.getElementById("year").value;
+
+
+        if(regs.length==0){
+          document.getElementById("regserror").innerHTML = "please fill this field";
+          return false;
+        }
+
+
+        if(chas.length==0){
+          document.getElementById("chaserror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        if(model.length==0){
+          document.getElementById("modelerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(model)){
+          document.getElementById("cityerror").innerHTML = "only text are allowed";
+          return false;
+        }
+
+        if(color.length==0){
+          document.getElementById("colorerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(pincode)){
+          document.getElementById("pinerror").innerHTML = "only text are allowed";
+          return false;
+        }
+
+        if(year.length==0){
+          document.getElementById("yearerror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(isNaN(year)){
+          document.getElementById("yearerror").innerHTML = "only numbers are allowed";
+          return false;
+        }
+
+      }
+    </script>
+
+    
+    {% endblock %}

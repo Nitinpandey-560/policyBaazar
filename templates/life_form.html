@@ -1,0 +1,140 @@
+{% extends 'welcomeclient.html' %}
+
+{% block 'nav' %}
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 py-3 logo">
+					<img src="/static/images/cptl.png" alt="" id="cptl"> </br>
+					<label class="l1 logo_text_decoration lg">Capital</label>
+					<label class="l2 logo_text_decoration lg">Insurance</label>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+		<nav class="col-md-12 nav pt-1 mt-2 bg-light menu  " style="width: 100%;" data-spy="affix" data-offset-top="197">
+			<a href="/client/home/" class="nav-link">Home</a>
+			<a href="#services" class="nav-link">Services</a>
+			<a href="#about" class="nav-link">About Us</a>
+			<a href="#" class="nav-link" data-toggle="modal" data-target="#contactmodal">Contact Us</a>
+	
+			<!--<a href="/login/"  class="nav-link">Login</a>-->
+			<!--<a href="/signup/"  class="nav-link">New user ?</a>-->
+			<div class="dropdown" id="drop">
+				<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+				  {{request.user}}
+				</button>
+				<div class="dropdown-menu">
+				  <a class="dropdown-item" href="#">My Account</a>
+				  <a class="dropdown-item" href="#">History</a>
+				  <a class="dropdown-item" href="/logout/">Logout</a>
+				</div>
+			  </div>
+		</nav>
+
+		{% endblock  %}
+
+    {% block 'carousel' %}
+    {% endblock %}
+
+    {% block 'insurance' %}
+    <div class="container mt-5 mb-5">
+    <h1>Life Insurance Registration Form</h1>
+    <form method="POST" onsubmit="return validateData()">
+      {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputaddr1">Enter Name </label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter Name" name="name">
+          <small id="nameError" class="form-text text-muted">We'll never share your details with anyone else.</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputaddr2">Enter Date of Birth</label>
+            <input type="text" class="form-control" id="dob" aria-describedby="emailHelp" placeholder="Enter Date of Birth" name="dob">
+            <small id="doberror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Enter Height</label>
+            <input type="text" class="form-control" id="height" aria-describedby="emailHelp" placeholder="Enter Height" name="height">
+            <small id="heighterror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Enter Weight</label>
+            <input type="text" class="form-control" id="weight" aria-describedby="emailHelp" placeholder="Enter weight" name="weight">
+            <small id="weighterror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputaddr1">Describe any health issue</label>
+            <input type="text" class="form-control" id="health" aria-describedby="emailHelp" placeholder="Enter any health issue" name="health">
+            <small id="healtherror" class="form-text text-muted">We'll never share your details with anyone else.</small>
+          </div>
+        
+        <a href="/client/order/"><button type="submit" class="btn btn-primary">Submit</button></a>
+      </form>
+    </div>
+
+    <script>
+      function validateData(){
+        var name = document.getElementById("name").value;
+        var dob = document.getElementById("dob").value;
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var health = document.getElementById("health").value;
+
+
+        if(name.length==0){
+          document.getElementById("nameError").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(name)){
+          document.getElementById("nameError").innerHTML = "only text are allowed";
+          return false;
+        }
+
+        if(dob.length==0){
+          document.getElementById("doberror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(isNaN(dob)){
+          document.getElementById("addr2error").innerHTML = "only valid date are allowed";
+          return false;
+        }
+
+        if(height.length==0){
+          document.getElementById("heighterror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(isNaN(height)){
+          document.getElementById("heighterror").innerHTML = "only number are allowed";
+          return false;
+        }
+
+        if(weight.length==0){
+          document.getElementById("weighterror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(isNaN(weight)){
+          document.getElementById("weighterror").innerHTML = "only numbers are allowed";
+          return false;
+        }
+
+        if(health.length==0){
+          document.getElementById("healtherror").innerHTML = "please fill this field";
+          return false;
+        }
+
+        else if(!isNaN(health)){
+          document.getElementById("healtherror").innerHTML = "only text are allowed";
+          return false;
+        }
+
+      }
+    </script>
+    
+    {% endblock %}

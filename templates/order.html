@@ -1,0 +1,53 @@
+{% extends 'welcomeclient.html' %}
+
+{% block 'nav' %}
+	<div class="container-fluid">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 py-3 logo">
+					<img src="/static/images/cptl.png" alt="" id="cptl"> </br>
+					<label class="l1 logo_text_decoration lg">Capital</label>
+					<label class="l2 logo_text_decoration lg">Insurance</label>
+					
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+		<nav class="col-md-12 nav pt-1 mt-2 bg-light menu  " style="width: 100%;" data-spy="affix" data-offset-top="197">
+			<a href="/client/home/" class="nav-link">Home</a>
+			<a href="#services" class="nav-link">Services</a>
+			<a href="#about" class="nav-link">About Us</a>
+			<a href="#" class="nav-link" data-toggle="modal" data-target="#contactmodal">Contact Us</a>
+	
+			<!--<a href="/login/"  class="nav-link">Login</a>-->
+			<!--<a href="/signup/"  class="nav-link">New user ?</a>-->
+			<div class="dropdown" id="drop">
+				<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
+				  {{request.user}}
+				</button>
+				<div class="dropdown-menu">
+				  <a class="dropdown-item" href="/client/myaccount/">My Profile</a>
+				  <a class="dropdown-item" href="/client/history/">History</a>
+				  <a class="dropdown-item" href="/logout/">Logout</a>
+				</div>
+			  </div>
+		</nav>
+
+		{% endblock  %}
+		{% block 'carousel' %}
+    {% endblock %}
+	{% block 'insurance' %}
+	<div class="jumbotron text-center">
+		<h1 class="display-3">Thank You!</h1>
+		<p class="lead"><strong>Please visit again...</strong> for further instructions on how to manage your Capital Insurance.</p>
+		<hr>
+		<p>
+		  Having trouble? <a href="">Contact us</a>
+		</p>
+		<p class="lead">
+		  <a class="btn btn-primary btn-sm" href="/client/home/" role="button">Continue to homepage</a>
+		</p>
+	  </div>
+    {% endblock %}
